@@ -5,7 +5,6 @@ Finding heavy hitters has been of vital importance in network measurement. In al
 Experimental results show that compared with the standard Elastic, our tailored Elastic reduces the error rate 5.7～8.1 times, and increases the speed 2.5 times.
 
 ## About this repo
-- `Elastic_HH_paper` 
 - `data`: traces for test, each 13 bytes in a trace is a five tuple: (SrcIP:SrcPort, DstIP:DstPort, protocol)
 - `src`: contains codes of Elastic_HH sketch and other algorithms implemented on CPU, all of which can be used to detect heavy hitters. They are  SpaceSaving, Count/CM sketch with a min-heap (CountHeap/CMHeap), Elastic and Elastic_HH, respectively. The codes of measuring their accuracy are also added in these algorithms'  .cpp file.
 - `src_for_speed`: algorithms in this folder are the same as those in `src`. The codes in this folder aim at measuring their speed.   
