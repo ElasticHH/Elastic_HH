@@ -68,7 +68,7 @@ public:
 	    __m128i min2 = _mm_min_epi32(x,min1);
 	    __m128i min3 = _mm_shuffle_epi32(min2, _MM_SHUFFLE(0,0,0,1));
 	    __m128i min4 = _mm_min_epi32(min2,min3);
-	    int min_counter_val = _mm_cvtsi128_si32(min4);//取出低32位
+	    int min_counter_val = _mm_cvtsi128_si32(min4);//
 
 	    const __m256i ct_item = _mm256_set1_epi32(min_counter_val);
 	    int ct_matched = 0;
