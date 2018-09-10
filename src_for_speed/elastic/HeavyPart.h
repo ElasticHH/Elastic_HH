@@ -50,16 +50,16 @@ public:
 		const uint32_t mask_base = 0x7FFFFFFF;
 		const __m256i *counters = (__m256i *)(buckets[pos].val);
 		__m256 masks = (__m256)_mm256_set1_epi32(mask_base);
-		//重复设置每32位为mask_base
+		
 		__m256 results = (_mm256_and_ps(*(__m256*)counters, masks));
-		//每32位作用一次
+		
 	    __m256 mask2 = (__m256)_mm256_set_epi32(mask_base, 0, 0, 0, 0, 0, 0, 0);
-	    //依次设置每32位为mask_base,0,0,0,0,0,0,0
+	   
 	    results = _mm256_or_ps(results, mask2);
-	    //每32位作用一次
+	    
 
 	    __m128i low_part = _mm_castps_si128(_mm256_extractf128_ps(results, 0));  
-	    //extract 提取低八位或者高八位   castps用作__m128至__m128i的类型转换
+	    
 	    __m128i high_part = _mm_castps_si128(_mm256_extractf128_ps(results, 1));
 
 	    __m128i x = _mm_min_epi32(low_part, high_part);
@@ -75,7 +75,7 @@ public:
 
 	    __m256i ct_a_comp = _mm256_cmpeq_epi32(ct_item, (__m256i)results);
 	    matched = _mm256_movemask_ps((__m256)ct_a_comp);
-	    int min_counter = _tzcnt_u32((uint32_t)matched); //数出尾随的零的个数
+	    int min_counter = _tzcnt_u32((uint32_t)matched); 
 
 
 		if(min_counter_val == 0)		// empty counter
